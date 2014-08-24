@@ -30,4 +30,12 @@ describe Playlist do
       songs.should == @playlist.song_list
     end
   end
+
+  describe '#load' do
+    it 'loads a playlist from a file' do
+      playlist = Playlist.new
+      playlist.load(@playlist_name)
+      [@playlist_name, @playlist.song_list].should == [playlist.name, playlist.song_list]
+    end
+  end
 end

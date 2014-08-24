@@ -23,7 +23,7 @@ class Playlist
     @song_list << song
   end
 
-  def open(name)
+  def load(name)
     @name = name
     @song_list = YAML.load_file(@playlist_directory + name + ".yaml")
   end
