@@ -34,4 +34,7 @@ class Playlist
     end
   end
 
+  def filter(criteria, keyword)
+    @song_list.find_all { |song| song[criteria].to_s.include? keyword.to_s }
+  end
 end
