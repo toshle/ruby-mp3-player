@@ -7,7 +7,7 @@ class Playlist
   def initialize()
     @name = ""
     @song_list = []
-    @playlist_directory = "../res/playlists/"
+    @playlist_directory = Dir.pwd + "/res/playlists/"
   end
 
   def add(path)

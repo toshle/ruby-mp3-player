@@ -1,10 +1,12 @@
 require 'spec_helper'
+require 'yaml'
 
 describe Playlist do
   before :all do
     @playlist = Playlist.new
     @song = Dir.pwd + "/res/sample.mp3"
-    @playlist_directory =  Dir.pwd + "res/playlists/"
+    @playlist_directory =  Dir.pwd + "/res/playlists/"
+    @playlist_name = 'playlist'
   end
 
   describe '#new' do
@@ -23,7 +25,9 @@ describe Playlist do
 
   describe '#save' do
     it 'saves the playlist in a file' do
-
+      @playlist.save @playlist_name
+      songs = YAML.load_file(@playlist_directory + @playlist_name + ".yaml")
+      songs.should == @playlist.song_list
     end
   end
 end
