@@ -1,5 +1,9 @@
 class Player
-  attr_reader :player
+  attr_reader :player, :current_playlist
+
+  def initialize
+
+  end
 
   def play(source)
 
