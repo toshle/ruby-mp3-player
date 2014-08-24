@@ -4,7 +4,7 @@ require 'mp3info'
 class Playlist
   attr_reader :name, :song_list
 
-  def initialize()
+  def initialize
     @name = ""
     @song_list = []
     @playlist_directory = Dir.pwd + "/res/playlists/"
