@@ -1,20 +1,26 @@
+require './players/auditeplayer'
+
 class Player
   attr_reader :player, :current_playlist
 
-  def initialize
+  AVAILABLE_PLAYERS = {
+    audite: AuditePlayer
+  }
 
+  def initialize
+    @player = AVAILABLE_PLAYERS[:audite].new
   end
 
   def play(source)
-
+    @player.play(source)
   end
 
-  def pause
-
+  def toggle
+    @player.toggle
   end
 
   def stop
-
+    @player.stop
   end
 
   def seek_forward(seconds)
