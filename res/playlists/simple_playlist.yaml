@@ -1,0 +1,13 @@
+---
+- :title: Ruby
+  :artist: Kaiser Chiefs
+  :album: TBC
+  :genre: Other
+  :year: 2013
+  :path: ../res/sample.mp3
+- :title: "Àmamos la vida"
+  :artist: Accept
+  :album: 
+  :genre: Other
+  :year: 2006
+  :path: ../res/sample2.mp3
