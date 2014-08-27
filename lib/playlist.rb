@@ -25,11 +25,11 @@ class Playlist
 
   def load(name)
     @name = name
-    @song_list = YAML.load_file(@playlist_directory + name + ".yaml")
+    @song_list = YAML.load_file(@playlist_directory + name)
   end
 
   def save(name)
-    File.open(@playlist_directory + name + ".yaml", 'w') do |file|
+    File.open(@playlist_directory + name, 'w') do |file|
       file.write(@song_list.to_yaml)
     end
   end

@@ -26,8 +26,8 @@ describe Playlist do
   describe '#add' do
     it 'adds a song to the Playlist' do
       size = @playlist.song_list
-      @playlist.add @song
-      @playlist.song_list.map { |song| song[:path] }.should include @song
+      @playlist.add @song_object[:path]
+      @playlist.song_list.map { |song| song[:path] }.should include @song_object[:path]
     end
   end
 
@@ -42,8 +42,8 @@ describe Playlist do
   describe '#load' do
     it 'loads a playlist from a file' do
       playlist = Playlist.new
-      playlist.load(@playlist_name)
-      [@playlist_name, @playlist.song_list].should == [playlist.name, playlist.song_list]
+      playlist.load(@playlist_name + ".yaml")
+      [@playlist_name + ".yaml", @playlist.song_list].should == [playlist.name, playlist.song_list]
     end
   end
 
