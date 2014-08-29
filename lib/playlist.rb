@@ -2,12 +2,16 @@ require 'yaml'
 require 'mp3info'
 
 class Playlist
-  attr_reader :name, :song_list
+  attr_accessor :name, :song_list
+
+  def Playlist.playlist_directory
+    File.join(File.dirname(__FILE__), "../res/playlists/")
+  end
 
   def initialize
     @name = ""
     @song_list = []
-    @playlist_directory = Dir.pwd + "/res/playlists/"
+    @playlist_directory = File.join(File.dirname(__FILE__), "../res/playlists/")
   end
 
   def add(path)

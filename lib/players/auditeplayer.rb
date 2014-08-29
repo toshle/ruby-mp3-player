@@ -1,12 +1,14 @@
 require 'audite'
 
 class AuditePlayer
-  attr_reader :adapter, :playlist, :current_song_index
+  attr_reader :adapter, :playlist, :current_song_index, :repeat, :playing
   def initialize
     @adapter = Audite.new
     @playing = false
+    @repeat = false
     @current_song_index = 0
     @adapter.events.on(:complete) do
+      @playing = false
       play_next
     end
   end
@@ -32,16 +34,22 @@ class AuditePlayer
     @adapter.toggle if @playing
   end
 
-  def play_next
-    stop if !@adapter.active
-    if @playlist.song_list.size >= 1
-      if @current_song_index < @playlist.song_list.size - 1
-        @current_song_index += 1
-      else
-        @current_song_index = 0
+  def play_next(command = false)
+    if @repeat or command
+      stop if !@adapter.active
+      if @playlist.song_list.size >= 1
+        if @current_song_index < @playlist.song_list.size - 1
+          @current_song_index += 1
+        else
+          @current_song_index = 0
+        end
       end
+      play @playlist.song_list[@current_song_index][:path]
     end
-    play @playlist.song_list[@current_song_index][:path]
+  end
+
+  def current_song
+    @playlist.song_list[@current_song_index]
   end
 
   def play_previous
@@ -57,8 +65,15 @@ class AuditePlayer
   end
 
   def set_playlist(source)
-    @playlist = Playlist.new
-    @playlist.load source
+    @playlist = source
+  end
+
+  def seek_forward(seconds = 2)
+    @player.forward seconds
+  end
+
+  def seek_backwards(seconds = 2)
+    @player.rewind seconds
   end
 
   def close
