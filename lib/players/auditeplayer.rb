@@ -9,7 +9,7 @@ class AuditePlayer
     @current_song_index = 0
     @adapter.events.on(:complete) do
       @playing = false
-      play_next
+      play_next true
     end
   end
 
