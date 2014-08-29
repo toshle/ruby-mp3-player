@@ -27,14 +27,10 @@ class Console < Thor
   option :all, :type => :boolean
   def show(playlist = nil)
     clear
-    all = Dir[Playlist.playlist_directory + "*.yaml"].map do |file|
-      file.split('/').last.split('.').first
-    end
-
     if playlist == nil and options[:all]
       puts
       puts "Playlists:"
-      puts all
+      puts all_playlists
       puts
     end
     if playlist != nil
@@ -50,7 +46,7 @@ class Console < Thor
   option :new_name
   def add_to_playlist(file, playlist = "now_playing")
     list = Playlist.new
-    list.load playlist + ".yaml"
+    list.load playlist + ".yaml" if all_playlists.include? playlist
     list.add file
     playlist = options[:new_name] if options[:new_name]
     list.save playlist + ".yaml"
@@ -72,6 +68,13 @@ class Console < Thor
     def clear
       system "clear"
       system "cls"
+    end
+
+    def all_playlists
+      all = Dir[Playlist.playlist_directory + "*.yaml"].map do |file|
+        file.split('/').last.split('.').first
+      end
+      all
     end
 
     def print_instructions
