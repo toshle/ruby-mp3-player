@@ -12,7 +12,7 @@ Feature plan
 ------------
 
 * ~~Player will play songs from files~~ - play PATH_TO_FILE
-* ~~Songs in playlists can be filtered by tags(title, artist, album, year, etc.)~~ - filter PLAYLIST_NAME CRITERA(title, artist, album or year) KEYWORD
+* ~~Songs in playlists can be filtered by tags(title, artist, album, year, etc.)~~ - filter PLAYLIST_NAME CRITERIA(title, artist, album or year) KEYWORD
 * ~~Songs can be added to playlists~~ - add_to_playlist PATH_TO_SONG PLAYLIST_NAME
 * ~~Create playlist~~ - add_to_playlist PATH_TO_SONG --new_name NEW_NAME
 * ~~Delete a playlist~~ - just delete the file
