@@ -103,6 +103,7 @@ class Console < Thor
         when 'i'
           clear
           print_instructions
+          puts player.current_song[:path].split('/').last
           puts player.current_song[:title].to_s + " - " + player.current_song[:artist].to_s
           print "Album: " + player.current_song[:album].to_s + " "
           print player.current_song[:year].to_s + "\n"

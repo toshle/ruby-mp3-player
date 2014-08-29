@@ -26,15 +26,13 @@ Shoes.app title: "Mp3 Player", top: 0, left: 0, width: 400, height: 200 do
     @progress_bar.click do
       left = @progress_handle.left
       @progress_handle.move mouse[1], 44
-      puts (@progress_handle.left - left).floor
-      @player.seek_forward (@progress_handle.left - left).floor
+      #@player.seek_forward (@progress_handle.left - left).floor
     end
 
     @progress_handle.click do
       @move = true
       motion do |left, top|
         if left >= 20 and left <= 380 and @move
-          puts left
           @progress_handle.move left, 44
         end
       end
@@ -45,9 +43,6 @@ Shoes.app title: "Mp3 Player", top: 0, left: 0, width: 400, height: 200 do
     end
 
     @player.player.adapter.events.on(:position_change) do |pos|
-      puts pos
-      #puts @player.player.adapter.length_in_seconds
-      #puts @player.player.adapter.length_in_seconds / 360
       @progress_handle.move 20 + pos.floor * @player.player.adapter.length_in_seconds / 360, 44
     end
 
